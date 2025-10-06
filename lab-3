@@ -4,4 +4,4 @@ gpg --full-generate key
 
 gpg --kist-keys
 
-IGOTZEKO: gpg --keyserver hkps://keys.opengpg.org --send-keys
+IGOTZEKO: gpg --export --armor hodei.castro@gmail.com > artxibo.asc
