@@ -5,3 +5,8 @@ gpg --full-generate key
 gpg --kist-keys
 
 IGOTZEKO: gpg --export --armor hodei.castro@gmail.com > artxibo.asc
+
+EDO
+
+ gpg --keyserver hkps://keys.openpgp.org --send-keys 481462FB4288715E6C718B24EECEF5CA84D333FB
+
