@@ -10,3 +10,51 @@ EDO
 
  gpg --keyserver hkps://keys.openpgp.org --send-keys 481462FB4288715E6C718B24EECEF5CA84D333FB
 
+__________________________________________________________________________________________________
+
+# User1 importa la llave de User2
+gpg --keyserver hkps://keys.openpgp.org --recv-keys 412A402035D37567E9FFE4167D21D2B70FC475BC
+
+--------------------------------------------------------------------------------------------------
+
+# User1 firma la llave de User2
+gpg --edit-key 412A402035D37567E9FFE4167D21D2B70FC475BC
+
+# Editorean
+sign
+y 
+save
+
+--------------------------------------------------------------------------------------------------
+gpg --edit-key 412A402035D37567E9FFE4167D21D2B70FC475BC
+
+# User1 confía en User2:
+trust
+5
+save
+
+--------------------------------------------------------------------------------------------------
+
+__________________________________________________________________________________________________
+
+# User1 mezua zifratu User2-rentzako
+
+echo "Hola User2, este es un mensaje de User1" > mensaje_user1.txt
+
+gpg --encrypt --recipient 412A402035D37567E9FFE4167D21D2B70FC475BC --output mensaje_cifrado.gpg mensaje_user1.txt
+
+---------------------------------------------------------------------------------------------------
+
+# User2 mezua deszifratu User1-rentzako
+
+gpg --decrypt --output mensaje_descifrado.txt mensaje_cifrado.gpg
+
+cat mensaje_descifrado.txt
+
+___________________________________________________________________________________________________
+
+# Zerbitzariari firmak bidali
+
+gpg --keyserver hkps://keys.openpgp.org --send-keys 412A402035D37567E9FFE4167D21D2B70FC475BC
+
+gpg --list-sigs
