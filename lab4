@@ -1,0 +1,26 @@
+sudo apt-get update                  # Actualiza la lista de paquetes disponibles.
+sudo apt-get install apache2         # Instala el servidor web Apache.
+sudo systemctl status apache2        # Muestra el estado del servicio Apache.
+sudo apt install openssl -y          # Instala OpenSSL para gestionar certificados SSL.
+
+sudo a2enmod ssl                     # Habilita el módulo SSL en Apache.
+sudo systemctl restart apache2       # Reinicia Apache para aplicar cambios.
+
+sudo mkdir /etc/apache2/ssl          # Crea carpeta para certificados SSL.
+cd /etc/apache2/ssl                  # Entra a la carpeta de certificados.
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout apache-selfsigned.key -out apache-selfsigned.crt  
+                                     # Crea un certificado SSL autofirmado.
+
+cd                                   # Vuelve al directorio personal.
+
+sudo mkdir /var/www/ssl-test         # Crea carpeta para el sitio de prueba con SSL.
+echo "<h1>SSL Konexioa</h1>" | sudo tee /var/www/ssl-test/index.html  # Crea un archivo HTML de prueba.                               
+sudo nano /etc/apache2/sites-available/ssl-test.conf   # Edita la configuración del sitio SSL.
+                                    
+sudo a2ensite ssl-test.conf          # Habilita la configuración del sitio SSL.
+sudo systemctl reload apache2        # Recarga Apache para aplicar la nueva configuración.
+
+exit                                 # Cierra la sesión del servidor remoto.
+
+scp urrunekozerbitzariahodei@34.175.82.227:/etc/apache2/ssl/apache-selfsigned.crt .   # Copia el certificado desde el servidor remoto al local.
+                                    
