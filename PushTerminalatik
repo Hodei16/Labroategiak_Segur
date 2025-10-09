@@ -1,0 +1,20 @@
+
+cd ~/Python-Lab2      #1. Entrar al directorio
+
+
+git status       # 2. Ver estado // git init itzalita badago
+
+
+echo "print('Hola Mundo')" > prueba.py      # 3. Crear archivo
+
+
+git add prueba.py      # 4. Añadir archivo
+
+
+git commit -S -m "Mezua"      # 5. Commit verificado
+
+
+git push origin main      # 6. Subir a GitHub
+
+
+git status        # 7. Verificar
